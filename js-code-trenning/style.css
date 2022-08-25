@@ -1,0 +1,42 @@
+body {
+    background-color: aliceblue;
+}
+
+.h1 {
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+   font-weight: 300;
+   margin-top: 150px;
+   margin-left: 480px;
+}
+
+.img {
+    margin-top: 20px;
+    margin-left: 130px;
+}
+
+.input {
+    margin-top: 50px;
+    margin-left: 15px;
+    color: grey;
+}
+
+.name-inp {
+    margin-bottom: 15px;
+}
+
+.number-inp {
+    margin-bottom: 15px;
+}
+
+.date-inp {
+    margin-bottom: 15px;
+}
+
+.cvv-inp {
+    margin-bottom: 15px;
+}
+
+.header {
+    display: flex;
+    margin-right: 150px;
+}

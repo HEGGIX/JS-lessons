@@ -75,26 +75,32 @@ body {
     color: darkgray;
 }
 
-.input-messege {
+.bottom-div {
     position: absolute;
     bottom: 0%;
     width: 100%;
-    /* border: 1px solid black; */
-    outline: 1px solid #000;
-    outline-offset: -1px;   
+}
+
+.input-messege {
+    width: 88%;
 }
 
 .right-panel__messege {
-    width: 70%;
-    height: 83%;
+    width: 100%;
+    height: 93%;
 }
 
-.messege1 {
-    width: 45px;
+.wrap {
+    text-align: right;
+}
+
+.messege {
+    display: inline-block;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
     height: 25px;
-    color: gray;
-}
-
-input[type="text" i] {
-    padding: 0px 0px;
+    color: black;
+    margin-bottom: 10px;
 }

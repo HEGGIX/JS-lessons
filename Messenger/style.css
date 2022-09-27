@@ -14,7 +14,7 @@ body {
     width: 800px;
     height: 600px;
     background-color: rgb(172, 172, 206);
-    border-radius: 5%;
+    /* border-radius: 5%; */
 }
 
 .left-panel {
@@ -30,6 +30,7 @@ body {
     height: 100%;
     border-bottom-right-radius: 5%;
     border-top-right-radius: 5%;
+    position: relative;
 }
 
 .left-panel__header {
@@ -58,33 +59,29 @@ body {
 .name-header {
     width: 100%;
     height: 7%;
-    border: 2px solid black;
-    border-top-right-radius: 5%;
-    padding-top: 10px;
-    padding-left: 5px;
-    
+    outline: 2px solid #000;
+    outline-offset: -2px;    
+    /* padding-top: 15px; */
+}
+
+.name-header__text {
+    margin-left: 15px;
 }
 
 .avatar {
     width: 10%;
     height: 10%;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     color: darkgray;
 }
 
 .input-messege {
+    position: absolute;
+    bottom: 0%;
     width: 100%;
-    height: 10%;
-    background-color: rgb(148, 148, 184);
-    margin-top: 75%;
-}
-
-.input {
-    width: 100%;
-    height: 70%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    border-radius: 5%;
+    /* border: 1px solid black; */
+    outline: 1px solid #000;
+    outline-offset: -1px;   
 }
 
 .right-panel__messege {
@@ -96,4 +93,8 @@ body {
     width: 45px;
     height: 25px;
     color: gray;
+}
+
+input[type="text" i] {
+    padding: 0px 0px;
 }

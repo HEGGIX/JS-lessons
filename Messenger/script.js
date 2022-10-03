@@ -1,16 +1,23 @@
 const data = {
     contacts: [
         {
-            name: "Alex"
+            name: "Alex",
+            messeges: [
+
+            ]
         },
         {
-            name: "Steave"
+            name: "Steave",
+            messeges: []
         },
         {
-            name: "Pavel"
+            name: "Pavel",
+            messeges: []
         },
     ]
 }
+
+let activeContact = null;
 
 const leftPanelContacts = document.querySelector(".left-panel__contacts")
 
@@ -25,6 +32,7 @@ function addContacts(data) {
         divContact.appendChild(contactName);
 
         leftPanelContacts.appendChild(divContact);
+        addContactsNameListener(divContact);
     });
 
 }
@@ -42,33 +50,85 @@ document.addEventListener('keydown', event => {
 })
 
 function sendMessege() {
-    const messege = createDivMessege(messegeInput.value);
-    messegeContainer.appendChild(messege);
-    messegeContainer.scrollTop = messegeContainer.scrollHeight
+    if (activeContact === null) return;
+
+    
+    const sender = getSender(messegeInput.value);
+    const text = getCleanText(messegeInput.value);
+
+    const userData = getUserData(text);
+
+    const messegeObject = {
+        text,
+        sender
+    }
+
+    userData.messeges.push(messegeObject);
+
+    viewMesseges();
+
 
     clearInput();
 }
 
-function createDivMessege(text) {
+function createDivMessege(text, sender) {
     const wrap = document.createElement('div');
-    wrap.classList.add('wrap');
+    const wrapClass = sender === 0 ? 'wrap-own' : 'wrap-companion';
+    wrap.classList.add(wrapClass);
     const messege = document.createElement('div');
     messege.classList.add('messege');
+    messege.style.backgroundColor = sender === 0 ? 'white' : '#e6e6e6';
     messege.innerHTML = text;
     wrap.appendChild(messege);
-    return wrap;    
+    return wrap;
 }
 
 function clearInput() {
     messegeInput.value = '';
 }
 
-const nameHader = document.querySelector (".name-header__text");
+const nameHader = document.querySelector(".name-header__text");
 
-function addContactsNameListener (element) {
-    element.addEventListener("click",() => changeActiveContact(element))
+function addContactsNameListener(element) {
+    element.addEventListener("click", () => changeActiveContact(element))
 }
 
-function changeActiveContact (element) {
-    nameHader.innerHTML = element.textContent || element.innerText
+function changeActiveContact(element) {
+    const name = element.textContent || element.innerText;
+    nameHader.innerHTML = name;
+    activeContact = name;
+
+    viewMesseges();
+}
+
+function viewMesseges() {
+    const userData = getUserData();
+
+    clearMessegeBox();
+
+    userData.messeges.forEach(messege => {
+        const divMessege = createDivMessege(messege.text, messege.sender);
+        messegeContainer.appendChild(divMessege);
+
+        messegeContainer.scrollTop = messegeContainer.scrollHeight;
+    })
+}
+
+function clearMessegeBox() {
+    messegeContainer.innerHTML = '';
+}
+
+function getUserData() {
+    return data.contacts.find(contact => contact.name === activeContact);
+}
+
+function getSender(text) {
+    const isOwnMessege = !text.includes(activeContact + ':');
+    if (isOwnMessege) return 0;
+    else return 1;
+}
+
+function getCleanText(text) {
+    const newText = text.replace(activeContact + ':', '');
+    return newText;
 }

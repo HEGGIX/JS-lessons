@@ -44,6 +44,7 @@ document.addEventListener('keydown', event => {
 function sendMessege() {
     const messege = createDivMessege(messegeInput.value);
     messegeContainer.appendChild(messege);
+    messegeContainer.scrollTop = messegeContainer.scrollHeight
 
     clearInput();
 }
@@ -60,4 +61,14 @@ function createDivMessege(text) {
 
 function clearInput() {
     messegeInput.value = '';
+}
+
+const nameHader = document.querySelector (".name-header__text");
+
+function addContactsNameListener (element) {
+    element.addEventListener("click",() => changeActiveContact(element))
+}
+
+function changeActiveContact (element) {
+    nameHader.innerHTML = element.textContent || element.innerText
 }

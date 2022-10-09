@@ -13,16 +13,16 @@ const data = {
         {
             name: "Pavel",
             messeges: []
-        },
+        }
     ]
 }
 
 let activeContact = null;
 
-const leftPanelContacts = document.querySelector(".left-panel__contacts")
+const leftPanelContacts = document.querySelector(".contact-container")
 
-function addContacts(data) {
-    data.forEach(contact => {
+function addContacts() {
+    data.contacts.forEach(contact => {
         const divContact = document.createElement("div");
         divContact.classList.add("left-panel__contacts__item")
 
@@ -34,7 +34,6 @@ function addContacts(data) {
         leftPanelContacts.appendChild(divContact);
         addContactsNameListener(divContact);
     });
-
 }
 
 addContacts(data.contacts);
@@ -50,9 +49,8 @@ document.addEventListener('keydown', event => {
 })
 
 function sendMessege() {
-    if (activeContact === null) return;
+    if (activeContact === null || messegeInput.value === '') return;
 
-    
     const sender = getSender(messegeInput.value);
     const text = getCleanText(messegeInput.value);
 
@@ -65,16 +63,9 @@ function sendMessege() {
 
     userData.messeges.push(messegeObject);
 
-    messegeInput.value !== "";
-
-    if (messegeInput.value === "") return;
-
     viewMesseges();
 
-
     clearInput();
-
-    clearEmptyMessege()
 }
 
 function createDivMessege(text, sender) {
@@ -124,6 +115,10 @@ function clearMessegeBox() {
     messegeContainer.innerHTML = '';
 }
 
+function clearContactsBox() {
+    leftPanelContacts.innerHTML = '';
+}
+
 function getUserData() {
     return data.contacts.find(contact => contact.name === activeContact);
 }
@@ -139,6 +134,20 @@ function getCleanText(text) {
     return newText;
 }
 
-const addContactButton = document.querySelector('.addСontact-button');
+const addContactButton = document.querySelector('.addContact-button');
 
-addContactButton.addEventListener("click",() => )
+addContactButton.addEventListener("click",() => addContact());
+
+function addContact() {
+    //работа с базой данных
+    const name = prompt('Введите имя нового контакта: ');
+    const newUser = {
+        name: name,
+        messeges: []
+    };
+    data.contacts.push(newUser);
+    //работа с въюхой
+    clearContactsBox();
+
+    addContacts();
+}

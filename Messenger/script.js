@@ -65,10 +65,16 @@ function sendMessege() {
 
     userData.messeges.push(messegeObject);
 
+    messegeInput.value !== "";
+
+    if (messegeInput.value === "") return;
+
     viewMesseges();
 
 
     clearInput();
+
+    clearEmptyMessege()
 }
 
 function createDivMessege(text, sender) {
@@ -132,3 +138,7 @@ function getCleanText(text) {
     const newText = text.replace(activeContact + ':', '');
     return newText;
 }
+
+const addContactButton = document.querySelector('.addСontact-button');
+
+addContactButton.addEventListener("click",() => )

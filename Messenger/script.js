@@ -2,9 +2,7 @@ const data = {
     contacts: [
         {
             name: "Alex",
-            messeges: [
-
-            ]
+            messeges: []
         },
         {
             name: "Steave",
@@ -30,6 +28,15 @@ function addContacts() {
         contactName.classList.add("contacts-name");
         contactName.innerHTML = contact.name;
         divContact.appendChild(contactName);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button");
+        deleteButton.innerHTML = "-";
+        divContact.appendChild(deleteButton);
+
+        const alexImage = new Image;
+        alexImage.src = "alex.jpg";
+        divContact.appendChild(alexImage);
 
         leftPanelContacts.appendChild(divContact);
         addContactsNameListener(divContact);
@@ -151,3 +158,10 @@ function addContact() {
 
     addContacts();
 }
+
+deleteButton.addEventListener("click",() => deleteContactButton());
+
+function deleteContactButton() {
+    
+}
+deleteContactButton()

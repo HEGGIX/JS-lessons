@@ -162,6 +162,6 @@ function addContact() {
 deleteButton.addEventListener("click",() => deleteContactButton());
 
 function deleteContactButton() {
-    
+    document.querySelector(".delete-button")
+    deleteContactButton()
 }
-deleteContactButton()
